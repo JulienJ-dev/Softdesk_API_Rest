@@ -60,6 +60,18 @@ class UserApiTests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
+    def test_reject_password_similar_to_username(self):
+        data = {
+            'username': 'longsimilarname123',
+            'password': 'longsimilarname123',
+            'age': 20,
+        }
+
+        response = self.client.post(reverse('user-list'), data)
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('password', response.data)
+
     def test_authenticated_user_can_read_and_update_profile(self):
         self.authenticate()
 

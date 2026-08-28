@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'users',
+    'projects',
+    'issues',
 ]
 
 MIDDLEWARE = [
@@ -139,7 +141,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_PAGINATION_CLASS': (
-        'rest_framework.pagination.PageNumberPagination'
+        'api.pagination.StandardResultsSetPagination'
     ),
-    'PAGE_SIZE': 10,
 }
